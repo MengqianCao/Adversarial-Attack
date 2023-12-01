@@ -60,14 +60,16 @@ def test_adversarial(model, testloader, criterion, device, epsilon, attack_func)
     return adversarial_accuracy, attack_success_rate
 
 if __name__ == '__main__':
-    try: func = sys.argv[1]
-    except: func = 'fgsm'
+    try: 
+        func = sys.argv[1]
+        model_path = sys.argv[2]
+    except: 
+        func = 'fgsm'
+        model_path = 'best_model.pth' 
     if func =='fgsm':
         attack_func = fgsm
-        model_path = 'best_fgsm_model.pth'
     elif func =='pgd':
         attack_func = pgd
-        model_path = 'best_pgd_model.pth'
     else:
         exit()
 
@@ -123,4 +125,3 @@ if __name__ == '__main__':
     num_images = 4
     # Visualize some adversarial examples
     plot_adv_images(testset, best_model, criterion, classes, device, epsilon, num_images,attack_func)
-
