@@ -59,4 +59,4 @@ For example, if you want to use the fgsm method to attack the model which traine
 ```shell
 python test_attack.py fgsm best_fgsm_model.pth
 ```
-Run the above command in the terminal, and you can view the logs during testing with different epsilons. After the testing is completed, you can obtain the curve graph of attack success rate with different epsilons, and a plot of isualized examples.
+Run the above command in the terminal, and you can view the logs during testing with different epsilons. After the testing is completed, you can obtain the curve graph of attack success rate with different epsilons, and a plot of visualized examples.
