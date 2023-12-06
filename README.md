@@ -1,5 +1,5 @@
 # Overview
-The objective of this project is to investigate the adversarial attack by adding perturbation to the target objects and finally disrupt the model’s recognition to these objects. There are two types of adversarial attacks this project mainly focuses on: Fast Gradient Sign Method (FGSM), Projected Gradient Descent (PGD)</br></br>
+The objective of this project is to investigate the adversarial attack by adding perturbation to the target objects and finally disrupt the model’s recognition to these objects. There are two types of adversarial attacks this project mainly focuses on: Fast Gradient Sign Method (FGSM), Projected Gradient Descent (PGD).</br></br>
 The project involves implementing both FGSM and PGD attacks, basic factors such as the effectiveness, perturbation magnitude, and robustness of two attacks will be considered to make a comparison between these two attacks. Additionally, this project will implement a defense mechanism to the trained model through adversarial training to mitigate the impact of adversarial attacks, and visualizations and results will be provided in the end.
 # Dataset & Model
 The project uses Cifar10 dataset as the test benchmark, and ResNet-50 is chosen to be the base model for classifying test images. 
