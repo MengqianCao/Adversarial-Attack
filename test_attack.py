@@ -78,26 +78,16 @@ if __name__ == '__main__':
     batch_size = 64
     trainset, trainloader, testset, testloader, classes = load_dataset(batch_size)
 
-    # Load the pre-trained model
-    model = models.resnet50(pretrained=True)
-    # Modify conv1 to suit CIFAR-10
-    model.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
-    # Modify the final fully connected layer according to the number of classes
-    num_features = model.fc.in_features
-    model.fc = nn.Linear(num_features, num_classes)
-    # Move the model to GPU if available
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = model.to(device)
 
     # Set hyperparameters
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
     num_epochs = 60
     epsilon_values = [0.01, 0.03, 0.07, 0.1, 0.3, 0.5]
 
     # Load the best model
     best_model = models.resnet50(pretrained=True)
     # Modify conv1 to suit CIFAR-10
+    num_features = best_model.fc.in_features
     best_model.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
     best_model.fc = nn.Linear(num_features, num_classes)
     # Load checkpoints
@@ -105,6 +95,7 @@ if __name__ == '__main__':
     best_model.load_state_dict(checkpoint['model_state_dict'])
     epoch = checkpoint['epoch']
     test_accuracy = checkpoint['test_accuracy']
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     best_model = best_model.to(device)
     print("Best Trained Model Loaded!")
     print(f"Checkpoint at Epoch {epoch+1} with accuracy of {test_accuracy}%")
